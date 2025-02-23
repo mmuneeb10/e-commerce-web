@@ -15,3 +15,8 @@ code {
 .ant-layout-content {
   background-color: #fff;
 }
+
+.loader-container {
+  text-align: center;
+  margin-bottom: 10px;
+}

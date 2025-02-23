@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col, Card, Button, Typography, Spin } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import { constants } from "../../constants";
+import AppLoader from "../../components/loader";
 import "./home.css";
 
 const { Title, Text } = Typography;
@@ -20,6 +21,9 @@ const Home = () => {
       <Title level={2} className="page-title">
         Products
       </Title>
+
+      {getProductsQuery.isLoading && <AppLoader />}
+
       {!getProductsQuery.isLoading && getProductsQuery.data?.length === 0 && (
         <p>There is no products to show</p>
       )}
