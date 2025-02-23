@@ -1,0 +1,24 @@
+.app-header {
+  background-color: #e2e2e2; 
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand h1 {
+  color: #000;
+  margin: 0;
+  font-size: 24px;
+}
+
+.cart-badge .ant-badge-count {
+  background-color: red;
+}
