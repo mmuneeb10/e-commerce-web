@@ -1,14 +1,16 @@
 import React from "react";
 import { Row, Col, Card, Button, Typography } from "antd";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { constants } from "../../constants";
 import AppLoader from "../../components/loader";
 import axios from "axios";
+import CartSlideout from "../../components/cart";
 import "./home.css";
 
 const { Title, Text } = Typography;
 
 const Home = () => {
+  const queryClient = useQueryClient();
   const getProductsQuery = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
@@ -47,10 +49,19 @@ const Home = () => {
       payload["cartId"] = getMyCart.data.id;
     }
     await addToCartMutation.mutateAsync(payload);
+    queryClient.invalidateQueries(["my-cart"]);
+  };
+
+  const isAlreadyAdded = (productId) => {
+    if (getMyCart?.data?.products?.find((item) => item.id === productId)) {
+      return true;
+    }
+    return false;
   };
 
   return (
     <div className="home-container">
+      <CartSlideout data={getMyCart.data} />
       <Title level={2} className="page-title">
         Products
       </Title>
@@ -72,7 +83,7 @@ const Home = () => {
                   type="primary"
                   block
                   onClick={addToCart(product.id)}
-                  disabled={addToCartMutation.isLoading}
+                  disabled={addToCartMutation.isLoading || isAlreadyAdded(product.id)}
                 >
                   Add to Cart
                 </Button>,

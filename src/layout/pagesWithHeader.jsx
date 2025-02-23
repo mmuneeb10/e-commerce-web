@@ -1,5 +1,5 @@
-import { Badge, Button, Layout, Space } from "antd";
-import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Layout, Space } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import { Outlet } from "react-router-dom";
 import "./layout.css";
 
@@ -17,12 +17,6 @@ const PagesWithHeader = () => {
             <Button type="primary" icon={<UserOutlined />}>
               Sign In
             </Button>
-
-            <Badge count={10} className="cart-badge">
-              <ShoppingCartOutlined
-                style={{ fontSize: "24px", color: "#000" }}
-              />
-            </Badge>
           </Space>
         </div>
       </Header>
