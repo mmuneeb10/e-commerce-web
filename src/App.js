@@ -4,6 +4,7 @@ import { Routes } from "./routes";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import CookieConsent from "react-cookie-consent";
 
 const queryClient = new QueryClient({});
 
@@ -33,6 +34,9 @@ function App() {
       <div className="App">
         <Routes />
       </div>
+      <CookieConsent>
+        This website uses cookies to enhance the user experience.
+      </CookieConsent>
     </QueryClientProvider>
   );
 }
